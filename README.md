@@ -3,11 +3,16 @@
 ## About Invoices-System
 An invoicing system is a web application that allows businesses to create and manage invoices for their products or services. The system typically includes features such as invoice creation, customer management, payment tracking, and reporting.
 
+The main purpose of an invoicing system is to streamline the invoicing process and make it easier for businesses to manage their finances. With an invoicing system, businesses can create and send invoices to their customers electronically, reducing the need for paper-based invoicing. They can also track payments and send payment reminders to customers who haven't paid their invoices.
+
+Some of the key features of an invoicing system may include:
+
 - Sections creation
 - Product creation
 - Invoice creation
 - Users creation
 - Report creation
+- Searching invoices
 - Notifications
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
