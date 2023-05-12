@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class SectionController extends Controller
 {
+
+    function __construct()
+    {
+        // More Security if you visit a page in website not have permission (User does not have the right permissions.)
+        $this->middleware('permission:الاقسام', ['only' => ['index']]);
+        $this->middleware('permission:اضافة قسم', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل قسم', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف قسم', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -107,5 +116,6 @@ class SectionController extends Controller
         $id = $request->id;
         Section::find($id)->delete();
         session()->flash('delete','تم حذف القسم بنجاح');
-        return redirect('/sections');    }
+        return redirect()->back();
+    }
 }

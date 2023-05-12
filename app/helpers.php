@@ -39,3 +39,11 @@ if (! function_exists('pass')) {
     }
 }
 
+// Username of Auth
+if (! function_exists('status')) {
+
+    function status()
+    {
+        return auth()->user()->status;
+    }
+}

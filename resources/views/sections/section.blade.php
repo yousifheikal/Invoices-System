@@ -72,9 +72,11 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
+                        @can('اضافة قسم')
                         {{--When click this link display form Add Section, scroll down to show code modaldemo8--}}
                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
                         {{--Choose Number of row for show--}}
+                        @endcan
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
                 </div>
@@ -100,16 +102,20 @@
                                 <td>
                                         {{--Process Edit & Delete --}}
 
+                                    @can('تعديل قسم')
 {{--When click this link display form (exampleModal2) When click i take id,section-name-description scroll down to show form for edit--}}
                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                            data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}"
                                            data-description="{{ $section->description }}" data-toggle="modal"
                                            href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
+                                    @endcan
+                                    @can('حذف قسم')
 {{--When click this link display form (modaldemo9) When click i take id,section-name-description scroll down to show form for Delete--}}
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{$section->id }}" data-section_name="{{$section->section_name }}"
                                        data-toggle="modal" href="#modaldemo9" title="حذف"><i
                                             class="las la-trash"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach

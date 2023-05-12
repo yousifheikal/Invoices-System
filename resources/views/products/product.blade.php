@@ -72,8 +72,10 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
+                        @can('اضافة منتج')
                             <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
                                data-toggle="modal" href="#exampleModal">اضافة منتج</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body">
@@ -94,18 +96,21 @@
                                 <tr>
                                     <td>{{$Product->id}}</td>
                                     <td>{{ $Product->Product_name }}</td>
-                                    <td>{{ $Product->description }}</td>
                                     <td>{{ $Product->section->section_name }}</td>
+                                    <td>{{ $Product->description }}</td>
                                     <td>
-                                            <button class="btn btn-outline-success btn-sm"
+                                        @can('تعديل منتج')
+                                        <button class="btn btn-outline-success btn-sm"
                                                     data-name="{{ $Product->Product_name }}" data-pro_id="{{ $Product->id }}"
                                                     data-section_name="{{ $Product->section->section_name }}"
                                                     data-description="{{ $Product->description }}" data-toggle="modal"
                                                     data-target="#edit_Product">تعديل</button>
-
-                                            <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $Product->id }}"
-                                                    data-product_name="{{ $Product->Product_name }}" data-toggle="modal"
-                                                    data-target="#modaldemo9">حذف</button>
+                                        @endcan
+                                        @can('حذف منتج')
+                                        <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $Product->id }}"
+                                                data-product_name="{{ $Product->Product_name }}" data-toggle="modal"
+                                                data-target="#modaldemo9">حذف</button>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
@@ -212,15 +217,15 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">حذف القسم</h6><button aria-label="Close" class="close" data-dismiss="modal"
+                    <h6 class="modal-tiproductstle">حذف القسم</h6><button aria-label="Close" class="close" data-dismiss="modal"
                                                                   type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="sections/destroy" method="post">
+                <form action="products/destroy" method="post">
                     @method('DELETE')
                     @csrf
                     <div class="modal-body">
                         <p>هل انت متاكد من عملية الحذف ؟</p><br>
-                        <input type="hidden" name="id" id="id" value="">
+                        <input type="hidden" name="pro_id" id="pro_id" value="">
                         <input class="form-control" name="product_name" id="product_name" type="text" readonly>
                     </div>
                     <div class="modal-footer">
@@ -273,6 +278,8 @@
             modal.find('.modal-body #description').val(description);
             modal.find('.modal-body #pro_id').val(pro_id);
         })
+    </script>
+    <script>
         $('#modaldemo9').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var pro_id = button.data('pro_id')

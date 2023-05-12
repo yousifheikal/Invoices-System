@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    function __construct()
+    {
+        // More Security if you visit a page in website not have permission (User does not have the right permissions.)
+        $this->middleware('permission:المنتجات', ['only' => ['index']]);
+        $this->middleware('permission:اضافة منتج', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل منتج', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف منتج', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -115,8 +124,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request)
     {
         //
+        $id = $request->pro_id;
+        Product::find($id)->delete();
+        session()->flash('delete','تم حذف المنتج بنجاح');
+        return redirect()->back();
     }
 }
