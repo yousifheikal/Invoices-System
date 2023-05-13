@@ -7,6 +7,7 @@ The main purpose of an invoicing system is to streamline the invoicing process a
 
 Some of the key features of an invoicing system may include:
 
+- Dashboard
 - Sections creation
 - Product creation
 - Invoice creation
